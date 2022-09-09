@@ -1,4 +1,6 @@
-import { Switcher } from "./switcher";
+import { Switcher } from './switcher';
+import css from '../styles.css';
+import sound from '../sound.wav'
 
 const errorHeading = document.querySelector('#error');
 const rootElement = document.querySelector('body');
