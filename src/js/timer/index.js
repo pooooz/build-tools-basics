@@ -36,10 +36,9 @@ export const setTimerForm = (formElement) => {
             src: './src/assets/sounds/sound.wav'
           });
           sound.play();
-
-          isActiveTimer = false;
         }
 
+        isActiveTimer = true;
         const time = convertSecondsToTimeString(converted);
         converted -= 1;
 
