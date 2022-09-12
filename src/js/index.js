@@ -1,5 +1,5 @@
 import { Switcher } from './switcher';
-import css from '../styles/styles.css';
+import css from '../styles/styles.scss';
 import sound from '../assets/sounds/sound.wav'
 
 const errorHeading = document.querySelector('#error');
