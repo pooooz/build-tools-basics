@@ -1,6 +1,7 @@
 import { convertTimeStringToSeconds } from './convertTimeStringToSeconds.js';
 import { convertSecondsToTimeString } from './convertSecondsToTimeString.js';
 import { printError, printTime } from '../utils/printResult.js';
+import { Howl } from 'howler';
 
 const stopButton = document.querySelector('#stop');
 const result = document.querySelector('#waiting');
@@ -32,7 +33,7 @@ export const setTimerForm = (formElement) => {
         if (converted <= 0) {
           clearInterval(timerId);
           const sound = new Howl({
-            src: './sound.wav'
+            src: './src/sound.wav'
           });
           sound.play();
 
