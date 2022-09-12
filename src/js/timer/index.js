@@ -33,7 +33,7 @@ export const setTimerForm = (formElement) => {
         if (converted <= 0) {
           clearInterval(timerId);
           const sound = new Howl({
-            src: './src/sound.wav'
+            src: './src/assets/sounds/sound.wav'
           });
           sound.play();
 

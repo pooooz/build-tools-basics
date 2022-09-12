@@ -6,7 +6,7 @@
   "author": "POZ <antoivans@gmail.com>",
   "license": "MIT",
   "scripts": {
-    "clean": "del build",
+    "clean": "del /Q build",
     "build": "yarn run clean && npx webpack --mode=development",
     "start": "yarn run build && npx webpack server --mode=development --hot"
   },
