@@ -3,10 +3,13 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 
 module.exports = {
-  entry: './src/js/index.js',
+  entry: {
+    index: './src/js/index.js',
+    gallery: './src/js/gallery/index.js',
+  },
   mode: 'development',
   output: {
-    filename: 'main.[contenthash].js',
+    filename: '[name].[contenthash].js',
     path: resolve(__dirname, 'build')
   },
   module: {
@@ -19,16 +22,24 @@ module.exports = {
         }
       },
       {
-        test: /\.(png|jpeg|gif|svg)$/i,
+        test: /\.(mp4)$/i,
         loader: 'file-loader',
         options: {
           name: '[path][name].[ext]'
         }
       },
       {
-        test: /\.css$/i,
-        use: ['style-loader', 'css-loader'],
-       },
+        test: /\.(png|jpeg|gif|svg|jpg)$/i,
+        loader: 'img-optimize-loader',
+        options: {
+          compress: {
+            mode: 'high',
+            webp: true,
+            gifsicle: true,
+            disableOnDevelopment: false,
+          }
+        }
+      },
       {
         test: /\.s[ac]ss$/i,
         use: [MiniCssExtractPlugin.loader, "css-loader", "sass-loader"],
@@ -36,10 +47,15 @@ module.exports = {
     ]
   },
   plugins: [
-    new HtmlWebpackPlugin({ template: resolve(__dirname, 'src/index.html'), filename: 'index.html' }),
-    new MiniCssExtractPlugin({ filename: '[name].[contenthash].css' }),
+    new HtmlWebpackPlugin({template: resolve(__dirname, 'src/index.html'), filename: 'index.html'}),
+    new HtmlWebpackPlugin({
+      template: resolve(__dirname, 'src/pages/gallery.html'),
+      filename: './src/pages/gallery.html'
+    }),
+    new MiniCssExtractPlugin({filename: '[name].[contenthash].css'}),
   ],
   devServer: {
+    hot: true,
     port: 3000,
     watchFiles: ['./*']
   }
